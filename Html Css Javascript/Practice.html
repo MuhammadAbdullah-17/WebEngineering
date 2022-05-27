@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice</title>
+    <style>
+      .line {
+        font-size: larger;
+        font-family: serif;
+      }
+
+      .result {
+        color: blueviolet;
+      }
+
+      .but1 {
+        display: inline;
+        align-items: center;
+      }
+
+      input {
+        border: none;
+      }
+
+      #buttons {
+        text-align: center;
+      }
+
+      #errors {
+        color: red;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <script language="JavaScript" type="text/JavaScript">
+    var res=0;
+    function sum() {
+           res =  Number(document.calculator.val1.value) + Number(document.calculator.val2.value);
+         }
+         function sub() {
+            if (Number(document.calculator.val1.value) > Number(document.calculator.val2.value))
+            {
+                res =  Number(document.calculator.val1.value) - Number(document.calculator.val2.value);
+                document.getElementById("errors").innerHTML=""
+            }
+            else document.getElementById("errors").innerHTML="Number 1 is smaller than number 2";
+         }
+         function mul() {
+           res =  Number(document.calculator.val1.value) * Number(document.calculator.val2.value);
+         }
+         function div() {
+           res =  Number(document.calculator.val1.value) / Number(document.calculator.val2.value);
+         }
+    function validate() {
+         if (document.calculator.val1.value=="" || document.calculator.val2.value=="") {
+            document.getElementById("errors").innerHTML="Enter Numbers...";
+             return false;
+         }
+         else if (document.calculator.val1.value === document.calculator.val2.value) {
+            document.getElementById("errors").innerHTML="Both Numbers can't be same.";
+             return false;
+         }
+        else
+        {document.getElementById("result").innerHTML= res;
+        document.getElementById("errors").innerHTML="";
+    }
+     }
+  </script>
+
+  <body>
+    <form
+      name="calculator"
+      method="post"
+      onsubmit="event.preventDefault(); return validate();"
+    >
+      <table border="1" align="center" cellspacing="5">
+        <tr>
+          <td class="line">Enter First Number:</td>
+          <td>
+            <input type="text" name="val1" />
+          </td>
+        </tr>
+        <tr>
+          <td class="line">Enter Second Number:</td>
+          <td>
+            <input type="text" name="val2" />
+          </td>
+        </tr>
+        <tr>
+          <td class="result">Result:</td>
+
+          <td>
+            <p id="result"></p>
+          </td>
+        </tr>
+      </table>
+      <div id="buttons">
+        <div class="but1">
+          <button type="submit" onClick="sum()">Sum</button>
+        </div>
+        <div class="but1">
+          <button type="submit" onClick="sub()">Subtract</button>
+        </div>
+        <div class="but1">
+          <button type="submit" onClick="mul()">Multiply</button>
+        </div>
+        <div class="but1">
+          <button type="submit" onClick="div()">DIvide</button>
+        </div>
+      </div>
+      <p id="errors"></p>
+    </form>
+  </body>
+</html>
